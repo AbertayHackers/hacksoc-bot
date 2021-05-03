@@ -1,17 +1,41 @@
 {
 	"en":{
-		"rules" : [
-			"https://wiki.hacksoc.co.uk/newconstitution",
-			"Obedience with all rules put forth by the Abertay Students Association and the Abertay Ethical Hacking Society.",
-			"Compliance with the expectation to use an easily identifiable alias (i.e. name, initials or handle).",
-			"Engage in a considerate manner at all times. Inconsiderate behaviour contains but is not limited to spam, excessive profanity, insults, harassment, and discrimination in any form.",
-			"Adherence to a SFW environment with usage of the appropriate channel where possible. NSFW content depicting pornographic material, gore and illegal substances are not allowed."
-		],
-		"help":{
+		"rules":{
+			"title":"Abertay Hackers Rules",
+			"footer":"Anyone found to be in violation of these rules will face the consequences set forth in the Abertay Ethical Hacking constitution which can be found here: https://wiki.hacksoc.co.uk/newconstitution",
+			"ruleWord":"Rule",
+			"rules" : [
+				"Obedience with all rules put forth by the Abertay Students Association and the Abertay Ethical Hacking Society.",
+				"Compliance with the expectation to use an easily identifiable alias (i.e. name, initials or handle).",
+				"Engage in a considerate manner at all times. Inconsiderate behaviour contains but is not limited to spam, excessive profanity, insults, harassment, and discrimination in any form.",
+				"Adherence to a SFW environment with usage of the appropriate channel where possible. NSFW content depicting pornographic material, gore and illegal substances are not allowed."
+			]
+		},
+		"commands":{
 			"contributors":{
 				"desc":"List the contributors to the bot",
 				"usage":"{}contributors"
+			},
+			"rules":{
+				"desc":"Display the server rules",
+				"usage":"{}rules [NUMBER]"
+			},
+			"welcome":{
+				"desc":"Display the welcome message",
+				"usage":"{}welcome"
 			}
+		},
+		"responses":{
+			"error":{
+				"improperPermissions":"You don't have permission to do that",
+				"ruleOutOfBounds":"There are {} rules. Try one of those :)",
+				"ruleLessThanZero":"{}? Really? You wanna try that one again, guv?",
+				"notAnInt":"Argument not an integer"
+			},
+			"success":{}
 		}
+	},
+	"links":{
+		"constitution":"https://wiki.hacksoc.co.uk/newconstitution"
 	}
 }

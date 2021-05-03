@@ -1,8 +1,28 @@
 {
 	"prefix":"!",
 	"status":"Hack the planet!",
+	"env":{
+		"guild":838894621051846726,
+		"channel":{
+			"welcome":838894621308354597,
+			"rules":838894621308354595
+		},
+		"role":{
+			"committee":838894621076881515
+		}
+	},
 	"cogs":[
+		"contributors",
+		"admin"
+	],
+	"disabledCogs":[],
+	"commands":[
 		"contributors"
 	],
-	"disabledCogs":[]
+	"hiddenCommands":[
+		"help"
+	],
+	"adminCommands":[
+		"rules"	
+	]
 }

@@ -1,0 +1,22 @@
+Hello there! :wave:
+
+Welcome to the Abertay Ethical Hacking Society Discord! :woman_technologist::man_technologist:
+
+You should have already been assigned an appropriate role by the bot when you joined; however, if this is not the case then you must first be assigned an appropriate role before gaining access to associated channels. If the bot hasn't assigned you roles (or has made a mistake) please reach out to one of our {committeeRole} members via private message :slight_smile:
+
+Each role corresponds to a unique colour, so make sure to request the one appropriate for you!
+ 
+      Role - Colour 
+:red_circle: Committee - Pink 
+:blue_circle: Society Member - Blue 
+:green_circle: Fresher - Green 
+:orange_circle: Graduate - Orange 
+:purple_circle: Abertay Staff - Purple 
+
+To ensure all members of the Discord are part of the Abertay Ethical Hacking Society community, we request you use an easily identifiable alias (i.e. first name, initials, handle). Hopefully, this will help provide a more welcoming atmosphere, allowing community members to get to know you better.
+
+Before you join the server, make sure you have reviewed the rules outlined in <#{rulesChannel}> :pencil:. By joining you are agreeing to follow these rules and guidelines. Anyone found to be in violation of these rules will face the consequences set forth in the Abertay Ethical Hacking Society constitution, which can be found here: https://wiki.hacksoc.co.uk/newconstitution. 
+
+Here are some other ways you can keep up to date with the Abertay Ethical Hacking Society: 
+:bird: Twitter: @AbertayHackers :bird: 
+:desktop: Website: <https://www.hacksoc.co.uk> :desktop:

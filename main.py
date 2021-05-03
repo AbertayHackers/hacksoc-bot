@@ -9,6 +9,7 @@ Last Updated:	03/05/2021 (AG | MuirlandOracle)
 import discord, asyncio
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound, MissingRequiredArgument
+from discord.ext.commands.errors import CheckFailure
 from libs.loadconf import config, secrets
 from libs.colours import Colours
 
@@ -39,7 +40,7 @@ async def on_ready():
 #Ignore the annoying errors
 @bot.event
 async def on_command_error(ctx, error):
-	error_to_skip = [CommandNotFound, MissingRequiredArgument]
+	error_to_skip = [CommandNotFound, MissingRequiredArgument, CheckFailure]
 	for error_type in error_to_skip:
 		if isinstance(error, error_type):
 			return
