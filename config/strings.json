@@ -6,6 +6,12 @@
 			"Compliance with the expectation to use an easily identifiable alias (i.e. name, initials or handle).",
 			"Engage in a considerate manner at all times. Inconsiderate behaviour contains but is not limited to spam, excessive profanity, insults, harassment, and discrimination in any form.",
 			"Adherence to a SFW environment with usage of the appropriate channel where possible. NSFW content depicting pornographic material, gore and illegal substances are not allowed."
-		]
+		],
+		"help":{
+			"contributors":{
+				"desc":"List the contributors to the bot",
+				"usage":"{}contributors"
+			}
+		}
 	}
 }
