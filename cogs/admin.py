@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from libs.loadconf import config, strings, formatHelp, getResponse, LoadRules, getGuild, getEnv
+from libs.loadconf import config, strings, formatHelp, getResponse, LoadRules, getEnv, getRole
 from libs.colours import Colours
 
 class Admin(commands.Cog):
@@ -50,7 +50,7 @@ class Admin(commands.Cog):
 	async def welcome(self, ctx):
 		channel = self.bot.get_channel(getEnv("channel", "welcome"))	
 		rulesChannel = getEnv("channel", "rules")
-		committeeRole = getGuild(self.bot).get_role(getEnv("role", "committee"))
+		committeeRole = getRole(self.bot, "Committee")
 		with open("prewrittenText/welcome.txt") as msg:
 			await channel.send(msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention))
 	

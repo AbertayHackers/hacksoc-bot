@@ -1,4 +1,4 @@
-import json
+import json, discord
 
 #Open all the config files
 with open("config/secrets.json") as secretData,\
@@ -22,6 +22,9 @@ def getEnv(envType, envVal):
 
 def getGuild(bot):
 	return bot.get_guild(config["env"]["guild"])
+
+def getRole(bot, roleName):
+	return discord.utils.get(getGuild(bot).roles, name=roleName)
 
 class LoadRules():
 	def __init__(self, lang="en"):
