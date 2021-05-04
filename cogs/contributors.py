@@ -8,7 +8,7 @@ class Contributors(commands.Cog):
 
 	#Send the contributors list
 	@commands.command(name="contributors", description=formatHelp("contributors", "desc"), usage=formatHelp("contributors", "usage"))
-	async def contributors(ctx):
+	async def contributors(self, ctx):
 		embed = discord.Embed(colour=discord.Colour.green())
 		embed.title = "Bot Contributor List"
 		for i in contributorList.keys():
@@ -17,7 +17,7 @@ class Contributors(commands.Cog):
 				text += f"__*{j}:*__ {contributorList[i][j]}\n"
 			if len(text) == 0:
 				text="No socials available"
-				embed.add_field(
+			embed.add_field(
 				name=i,
 				value=text,
 				inline=False
