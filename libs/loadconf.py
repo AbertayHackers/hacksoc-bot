@@ -4,9 +4,11 @@ import json, discord
 with open("config/secrets.json") as secretData,\
 	 	open("config/config.json") as configData,\
 	 	open("config/contributors.json") as contribData,\
+	 	open("config/env.json") as envData,\
 	 	open("config/strings.json") as stringData:
 	secrets = json.load(secretData)
 	config = json.load(configData)
+	config["env"] = json.load(envData)
 	strings = json.load(stringData)
 	contributors = json.load(contribData)
 

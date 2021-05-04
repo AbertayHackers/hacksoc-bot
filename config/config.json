@@ -1,13 +1,6 @@
 {
 	"prefix":"!",
 	"status":"Hack the planet!",
-	"env":{
-		"guild":722774915605987390,
-		"channel":{
-			"welcome":722780467644072042,
-			"rules":722780450476785735
-		}
-	},
 	"cogs":[
 		"contributors",
 		"admin"
