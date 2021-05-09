@@ -47,12 +47,21 @@ class Admin(commands.Cog):
 		await ctx.send(rules.getRule(ruleNum))
 
 	@commands.command(name="welcome", description=formatHelp("welcome", "desc"), usage=formatHelp("rules", "usage"))
-	async def welcome(self, ctx):
-		channel = self.bot.get_channel(getEnv("channel", "welcome"))	
+	async def welcome(self, ctx, messageID=None):
 		rulesChannel = getEnv("channel", "rules")
+		channel = self.bot.get_channel(getEnv("channel", "welcome"))	
 		committeeRole = getRole(self.bot, "Committee")
 		with open("prewrittenText/welcome.txt") as msg:
-			await channel.send(msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention))
+			if(not messageID):
+				await channel.send(msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention))
+			else:
+				try:
+					message = await channel.fetch_message(messageID)
+					await message.edit(content=msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention))
+					await ctx.send("Updated the welcome message")
+				except Exception as e:
+					await ctx.send(f"Couldn't edit the message: `{e}`")
+				
 	
 
 
