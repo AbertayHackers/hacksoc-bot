@@ -9,8 +9,8 @@ Each role corresponds to a unique colour, so make sure to request the one approp
       Role - Colour 
 :red_circle: Committee - Pink 
 :blue_circle: Society Member - Blue 
-:green_circle: Fresher - Green 
 :orange_circle: Graduate - Orange 
+:green_circle: Previous Committee - Green 
 :purple_circle: Abertay Staff - Purple 
 
 To ensure all members of the Discord are part of the Abertay Ethical Hacking Society community, we request you use an easily identifiable alias (i.e. first name, initials, handle). Hopefully, this will help provide a more welcoming atmosphere, allowing community members to get to know you better.
