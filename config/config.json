@@ -1,9 +1,11 @@
 {
 	"prefix":"!",
 	"status":"Hack the planet!",
+	"version":"v1.1",
 	"cogs":[
 		"contributors",
-		"admin"
+		"admin",
+		"misc"
 	],
 	"disabledCogs":[],
 	"commands":[
@@ -13,6 +15,7 @@
 		"help"
 	],
 	"adminCommands":[
-		"rules"	
+		"rules",
+		"welcome"
 	]
 }
