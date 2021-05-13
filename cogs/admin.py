@@ -53,11 +53,11 @@ class Admin(commands.Cog):
 		committeeRole = getRole(self.bot, "Committee")
 		with open("prewrittenText/welcome.txt") as msg:
 			if(not messageID):
-				await channel.send(msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention))
+				await channel.send(msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention, constitution=strings["links"]["constitution"]))
 			else:
 				try:
 					message = await channel.fetch_message(messageID)
-					await message.edit(content=msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention))
+					await message.edit(content=msg.read().format(rulesChannel=rulesChannel, committeeRole=committeeRole.mention, constitution=strings["links"]["constitution"]))
 					await ctx.send("Updated the welcome message")
 				except Exception as e:
 					await ctx.send(f"Couldn't edit the message: `{e}`")
