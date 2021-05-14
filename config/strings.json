@@ -40,6 +40,7 @@
 		}
 	},
 	"links":{
-		"constitution":"https://wiki.hacksoc.co.uk/newconstitution"
+		"constitution":"https://wiki.hacksoc.co.uk/information/constitution",
+		"site":"https://hacksoc.co.uk"
 	}
 }

@@ -19,4 +19,4 @@ Before you join the server, make sure you have reviewed the rules outlined in <#
 
 Here are some other ways you can keep up to date with the Abertay Ethical Hacking Society: 
 :bird: Twitter: @AbertayHackers :bird: 
-:desktop: Website: <https://www.hacksoc.co.uk> :desktop:
+:desktop: Website: <{site}> :desktop:
