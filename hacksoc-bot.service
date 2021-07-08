@@ -1,0 +1,15 @@
+[Unit]
+Description=Hacksoc Bot
+After=network.target
+
+[Service]
+Type=simple
+User=bot
+Group=bot
+WorkingDirectory=/opt/hacksoc-bot
+ExecStart=/usr/bin/python3 /opt/hacksoc-bot/main.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
