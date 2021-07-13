@@ -24,6 +24,10 @@
 				"desc":"Display the welcome message",
 				"usage":"{}welcome"
 			},
+            "invite":{
+                "desc":"Generate an invite code manually",
+                "usage":"{}invite <staff|sa|member|grad>"
+            },
 			"version":{
 				"desc":"Display the bot version",
 				"usage":"{}version"
@@ -34,7 +38,8 @@
 				"improperPermissions":"You don't have permission to do that",
 				"ruleOutOfBounds":"There are {} rules. Try one of those :)",
 				"ruleLessThanZero":"{}? Really? You wanna try that one again, guv?",
-				"notAnInt":"Argument not an integer"
+				"notAnInt":"Argument not an integer",
+                "invalidInviteRole":"`{target}` is not a valid role. Pick between: {roleList}"
 			},
 			"success":{}
 		}

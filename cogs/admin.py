@@ -9,6 +9,7 @@ from libs.loadconf import (
     getEnv,
     getRole,
 )
+from libs.db import SignupConn
 from libs.colours import Colours
 
 
@@ -97,6 +98,29 @@ class Admin(commands.Cog):
                 except Exception as e:
                     await ctx.send(f"Couldn't edit the message: `{e}`")
 
+
+    @commands.command(name="invite", description=formatHelp("invite", "desc"), usage=formatHelp("invite", "usage"))
+    async def invite(self, ctx, target=None):
+        channel = self.bot.get_channel(getEnv("channel", "welcome"))
+        #Get a list of perms
+        roles = list(config["perms"].keys())
+        roleList = "```\n"
+        for i in roles[:-1]:
+            roleList += f"{i}\n"
+        roleList += f"{roles[-1]}```"
+        #Validate input
+        if target not in roles:
+            await ctx.send(getResponse("error", "invalidInviteRole").format(target=target, roleList=roleList))
+            return
+    
+
+        #Get an ORM session
+        conn = SignupConn()
+        #Gen the invite
+        invite = await channel.create_invite(max_age=1800)
+        await ctx.send(invite)
+        conn.manualInvite(invite.code, target)
+        
 
 def setup(bot):
     bot.add_cog(Admin(bot))

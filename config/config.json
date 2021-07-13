@@ -5,7 +5,8 @@
 	"cogs":[
 		"contributors",
 		"admin",
-		"misc"
+		"misc",
+        "invites"
 	],
 	"disabledCogs":[],
 	"commands":[
@@ -16,6 +17,23 @@
 	],
 	"adminCommands":[
 		"rules",
-		"welcome"
-	]
+		"welcome",
+        "invite"
+	],
+    "perms":{
+        "member":[
+            "Verified",
+            "Member"
+        ],
+        "grad":[
+            "Verified",
+            "Grad"
+        ],
+        "staff":[
+            "Abertay Staff"
+        ],
+        "sa":[
+            "Student Association"
+        ]
+    }
 }

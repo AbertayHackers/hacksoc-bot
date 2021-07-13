@@ -13,8 +13,13 @@ from discord.ext.commands.errors import CheckFailure
 from libs.loadconf import config, secrets
 from libs.colours import Colours
 
+#Set Member intent
+intents = discord.Intents.default()
+intents.members = True
 
-bot = commands.Bot(command_prefix=config["prefix"])
+
+
+bot = commands.Bot(command_prefix=config["prefix"], intents=intents)
 bot.remove_command("help")
 
 

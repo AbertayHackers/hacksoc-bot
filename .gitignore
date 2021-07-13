@@ -1,0 +1,3 @@
+config/secrets.json
+*/__pycache__/
+libs/db/__pycache__/
