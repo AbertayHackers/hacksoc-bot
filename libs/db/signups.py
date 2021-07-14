@@ -21,3 +21,12 @@ class SignupConn(Conn):
         if self.curs.rowcount != 1:
             return False
         return self.curs.fetchone()[0]
+
+    def setDiscordID(self, discordID: int, code: str) -> bool:
+        sql = f"""UPDATE signups SET discordID = %s, joinTime = NOW() WHERE inviteCode = %s"""
+        if not self.curs.execute(sql, (discordID, code)):
+            return False
+        self.dbh.commit()
+        return True
+    
+     

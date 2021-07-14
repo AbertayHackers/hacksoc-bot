@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from libs.loadconf import config, getGuild, getRole
 from libs.db import SignupConn
-
+from libs.colours import Colours
 
 
 class Invites(commands.Cog):
@@ -17,8 +17,11 @@ class Invites(commands.Cog):
                 conn = SignupConn()
 
                 conn.setUsed(code)
+                conn.setDiscordID(member.id, code)
                 role = conn.checkRoleFromInvite(code)
-
+                if not role:
+                    Colours.warn("Invalid Invite used")
+                    return
                 for i in config["perms"][role]:
                     await member.add_roles(getRole(self.bot, i))
 

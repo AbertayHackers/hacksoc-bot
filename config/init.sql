@@ -1,12 +1,13 @@
 CREATE DATABASE discord;
 CREATE TABLE discord.signups (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    discordID VARCHAR(25) UNIQUE,
-    studentID VARCHAR(10) UNIQUE,
+    discordID VARCHAR(25),
+    studentID VARCHAR(10),
     perms VARCHAR(20),
     inviteCode VARCHAR(20) UNIQUE,
+    joinTime DATETIME,
     verificationCode VARCHAR(35) UNIQUE,
-    verificationExpiry DATETIME,
+    verificationExpiry INT,
     genType VARCHAR(10) DEFAULT "AUTO",
     inviteUsed BOOL DEFAULT 0
 );
