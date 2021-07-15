@@ -137,7 +137,10 @@ class Admin(commands.Cog):
 
         conn = SignupConn()
         currentRole = conn.checkRoleFromID(target)
-        if currentRole == role:
+        if not currentRole:
+            await ctx.send(getResponse("error", "memberPredatesRoleManagement"))
+            return
+        elif currentRole == role:
             await ctx.send(getResponse("error", "newRoleSameAsCurrent"))
             return
         conn.updateUserRole(target, role)

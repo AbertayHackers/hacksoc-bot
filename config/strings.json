@@ -46,7 +46,8 @@
                 "invalidUser":"The user requested does not exist",
                 "invalidArgument":"Invalid arguments provided. This command expects {}",
                 "invalidInviteRole":"`{target}` is not a valid role. Pick between: {roleList}",
-                "newRoleSameAsCurrent":"The role you are trying to apply is the same as the user's current role"
+                "newRoleSameAsCurrent":"The role you are trying to apply is the same as the user's current role",
+                "memberPredatesRoleManagement":"This member joined the server before role management was added. Please update their roles manually."
 			},
 			"success":{
                 "userRolesUpdated":"User roles have been updated!"
