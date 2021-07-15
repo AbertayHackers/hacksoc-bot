@@ -39,6 +39,11 @@
             "Verified",
             "Member",
             "New Student (Fresher)"
+        ],
+        "honourarymember":[
+            "Verified",
+            "Grad",
+            "Honourary Member"
         ]
     }
 }
