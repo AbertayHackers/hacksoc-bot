@@ -26,7 +26,11 @@
 			},
             "invite":{
                 "desc":"Generate an invite code manually",
-                "usage":"{}invite <staff|sa|member|grad>"
+                "usage":"{}invite staff|sa|member|grad|fresher"
+            },
+            "updateuser":{
+                "desc":"Swap the roles for a user",
+                "usage":"{}updateuser user staff|sa|member|grad|fresher"
             },
 			"version":{
 				"desc":"Display the bot version",
@@ -39,9 +43,14 @@
 				"ruleOutOfBounds":"There are {} rules. Try one of those :)",
 				"ruleLessThanZero":"{}? Really? You wanna try that one again, guv?",
 				"notAnInt":"Argument not an integer",
-                "invalidInviteRole":"`{target}` is not a valid role. Pick between: {roleList}"
+                "invalidUser":"The user requested does not exist",
+                "invalidArgument":"Invalid arguments provided. This command expects {}",
+                "invalidInviteRole":"`{target}` is not a valid role. Pick between: {roleList}",
+                "newRoleSameAsCurrent":"The role you are trying to apply is the same as the user's current role"
 			},
-			"success":{}
+			"success":{
+                "userRolesUpdated":"User roles have been updated!"
+            }
 		}
 	},
 	"links":{

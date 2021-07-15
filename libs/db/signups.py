@@ -22,6 +22,13 @@ class SignupConn(Conn):
             return False
         return self.curs.fetchone()[0]
 
+    def checkRoleFromID(self, discordID: int):
+        sql = """SELECT perms FROM signups WHERE discordID = %s"""
+        self.curs.execute(sql, (discordID,))
+        if self.curs.rowcount < 1:
+            return False
+        return self.curs.fetchall()[-1][0]
+
     def setDiscordID(self, discordID: int, code: str) -> bool:
         sql = f"""UPDATE signups SET discordID = %s, joinTime = NOW() WHERE inviteCode = %s"""
         if not self.curs.execute(sql, (discordID, code)):
@@ -29,4 +36,7 @@ class SignupConn(Conn):
         self.dbh.commit()
         return True
     
-     
+    def updateUserRole(self, discordID: int, newRole: str) -> bool:
+        sql = f"""UPDATE signups SET perms = %s WHERE discordID = %s"""
+        self.curs.execute(sql, (newRole, discordID))
+        self.dbh.commit()

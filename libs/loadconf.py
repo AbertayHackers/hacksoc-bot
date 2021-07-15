@@ -50,3 +50,12 @@ class LoadRules:
 
     def getNumRules(self):
         return len(self.rules)
+
+def getAvailableRoles():
+    #Get a list of perms
+    roles = list(config["perms"].keys())
+    roleList = "```\n"
+    for i in roles[:-1]:
+        roleList += f"{i}\n"
+    roleList += f"{roles[-1]}```"
+    return roles, roleList

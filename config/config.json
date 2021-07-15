@@ -34,6 +34,11 @@
         ],
         "sa":[
             "Student Association"
+        ],
+        "fresher":[
+            "Verified",
+            "Member",
+            "New Student (Fresher)"
         ]
     }
 }
