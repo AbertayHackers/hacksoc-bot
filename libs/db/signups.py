@@ -28,9 +28,35 @@ class SignupConn(Conn):
                 return True
         return False
 
+    def checkVerificationCode(self, rowID: int):
+        sql = """SELECT verificationCode, verificationExpiry FROM signups WHERE id = %s AND verificationUsed = 0"""
+        if not self.dictcurs.execute(sql, (rowID,)):
+            return False
+        return self.dictcurs.fetchall()[-1]
+
+    def checkPreviousSignup(self, studentID: str) -> bool:
+        sql = """SELECT studentID FROM signups WHERE studentID = %s AND inviteUsed = 1"""
+        if self.curs.execute(sql, (studentID,)):
+            return True
+        return False
+
+    def insertInvite(self, registerID: int, code: str) -> bool:
+        sql = """UPDATE signups SET inviteCode = %s WHERE id = %s"""
+        if not self.curs.execute(sql, (code, registerID)):
+            return False
+        self.dbh.commit()
+        return True
+
     def setUsed(self, code: str) -> bool:
         sql = """UPDATE signups SET inviteUsed = 1 WHERE inviteCode = %s"""
         if not self.curs.execute(sql, (code,)):
+            return False
+        self.dbh.commit()
+        return True
+
+    def setVerificationUsed(self, rowID: int) -> bool:
+        sql = """UPDATE signups SET verificationUsed = 1 WHERE id = %s"""
+        if not self.curs.execute(sql, (rowID,)):
             return False
         self.dbh.commit()
         return True

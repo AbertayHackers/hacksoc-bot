@@ -7,7 +7,8 @@ def genInvite():
         "Authorization" : f"Bot {secrets['token']}"
     }
     params = {
-        "max_age":config["inviteExpireTime"]
+        "max_age":config["inviteExpireTime"],
+        "unique":True
     }
     channel = getEnv("channel", "welcome")
     r = (requests.post(f"https://discordapp.com/api/v6/channels/{channel}/invites", json=params, headers=headers).text)

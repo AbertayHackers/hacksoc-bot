@@ -1,3 +1,4 @@
+DROP DATABASE discord;
 CREATE DATABASE discord;
 CREATE TABLE discord.signups (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,6 +9,7 @@ CREATE TABLE discord.signups (
     joinTime DATETIME,
     verificationCode VARCHAR(35) UNIQUE,
     verificationExpiry INT,
+    verificationUsed BOOL DEFAULT 0,
     genType VARCHAR(10) DEFAULT "AUTO",
     inviteUsed BOOL DEFAULT 0
 );
