@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html lang=en>
+    <head>
+        <title>HackSoc Discord Invite</title>
+        <meta charset="utf-8">
+        <meta name=viewport content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+            {% include page %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+            <p>{{ messages[0] }}</p>
+                {% endif %}
+            {% endwith %}
+        </main>
+    </body>
+</html>

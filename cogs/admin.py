@@ -14,6 +14,7 @@ from libs.loadconf import (
 from libs.db import SignupConn
 from libs.colours import Colours
 
+cleanID = lambda x: re.sub("[^0-9]", "", x)
 
 class Admin(commands.Cog):
     def __init__(self, bot):
@@ -113,7 +114,7 @@ class Admin(commands.Cog):
         #Get an ORM session
         conn = SignupConn()
         #Gen the invite
-        invite = await channel.create_invite(max_age=1800)
+        invite = await channel.create_invite(max_age=0)
         await ctx.send(invite)
         conn.manualInvite(invite.code, target)
 
@@ -124,7 +125,7 @@ class Admin(commands.Cog):
             await ctx.send(getResponse("error", "invalidInviteRole").format(target=target, roleList=roleList))
             return 
 
-        target = re.sub("[^0-9]", "", target)
+        target = cleanID(target)
         if len(target) < 1:
             await ctx.send(getResponse("error", "invalidArgument").format("a user ID"))
             return
@@ -151,6 +152,42 @@ class Admin(commands.Cog):
             await user.add_roles(getRole(self.bot, i))
 
         await ctx.send(getResponse("success","userRolesUpdated"))
+
+    @commands.command(name="adduser", description=formatHelp("adduser", "desc"), usage=formatHelp("adduser", "usage"))
+    async def adduser(self, ctx, userID = None, role = None):
+        roles, roleList = getAvailableRoles()
+        if not userID:
+            await ctx.send(getResponse("error", "invalidArgument").format("a user ID"))
+            return
+        elif role not in roles:
+            await ctx.send(getResponse("error", "invalidInviteRole").format(target=role, roleList=roleList))
+            return
+        userID = cleanID(userID)
+        if len(userID) < 1:
+            await ctx.send(getResponse("error", "invalidArgument").format("a user ID"))
+            return
+        userID = int(userID)
+        user = getGuild(self.bot).get_member(userID)
+        if not user:
+            await ctx.send(getResponse("error", "invalidUser"))
+            return
+         
+        conn = SignupConn()
+        if conn.checkRoleFromID(userID):
+            await ctx.send(getResponse("error", "userAlreadyInDB").format(config["prefix"]))
+            return
+
+        #Checks done -- add the user
+        if not conn.manualUserInsert(userID, role):
+            await ctx.send(getResponse("error", "manualAddFail"))
+            return
+        for i in config["perms"]:
+            for j in config["perms"][i]:
+                await user.remove_roles(getRole(self.bot, j))
+        for i in config["perms"][role]:
+            await user.add_roles(getRole(self.bot, i))
+
+        await ctx.send(getResponse("success", "manualAddSuccess")) 
         
 
 def setup(bot):

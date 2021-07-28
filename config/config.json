@@ -6,7 +6,8 @@
 		"contributors",
 		"admin",
 		"misc",
-        "invites"
+        "invites",
+        "site"
 	],
 	"disabledCogs":[],
 	"commands":[
@@ -45,5 +46,6 @@
             "Grad",
             "Honourary Member"
         ]
-    }
+    },
+    "inviteExpireTime":1800
 }

@@ -2,7 +2,7 @@
 	"en":{
 		"rules":{
 			"title":"Abertay Hackers Rules",
-			"footer":"Anyone found to be in violation of these rules will face the consequences set forth in the Abertay Ethical Hacking constitution which can be found here: https://wiki.hacksoc.co.uk/newconstitution",
+			"footer":"Anyone found to be in violation of these rules will face the consequences set forth in the Abertay Ethical Hacking constitution which can be found here: {}.",
 			"ruleWord":"Rule",
 			"rules" : [
 				"Obedience with all rules put forth by the Abertay Students Association and the Abertay Ethical Hacking Society.",
@@ -32,6 +32,10 @@
                 "desc":"Swap the roles for a user",
                 "usage":"{}updateuser user staff|sa|member|grad|fresher"
             },
+            "adduser":{
+                "desc":"Add a user to the database",
+                "usage":"{}adduser user staff|sa|member|grad|fresher"
+            },
 			"version":{
 				"desc":"Display the bot version",
 				"usage":"{}version"
@@ -43,14 +47,17 @@
 				"ruleOutOfBounds":"There are {} rules. Try one of those :)",
 				"ruleLessThanZero":"{}? Really? You wanna try that one again, guv?",
 				"notAnInt":"Argument not an integer",
-                "invalidUser":"The user requested does not exist",
+                "invalidUser":"The user requested does not exist or is not a member of the server",
                 "invalidArgument":"Invalid arguments provided. This command expects {}",
                 "invalidInviteRole":"`{target}` is not a valid role. Pick between: {roleList}",
                 "newRoleSameAsCurrent":"The role you are trying to apply is the same as the user's current role",
-                "memberPredatesRoleManagement":"This member joined the server before role management was added. Please update their roles manually."
+                "memberPredatesRoleManagement":"This member joined the server before role management was added. Please update their roles manually.",
+                "userAlreadyInDB":"The requested user is already in the database. Try `{}updateuser` instead",
+                "manualAddFail":"Failed to add the user to the database. Please check the logs"
 			},
 			"success":{
-                "userRolesUpdated":"User roles have been updated!"
+                "userRolesUpdated":"User roles have been updated!",
+                "manualAddSuccess":"User added to database successfully!"
             }
 		}
 	},

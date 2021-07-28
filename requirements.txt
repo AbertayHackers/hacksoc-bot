@@ -1,1 +1,7 @@
-pymsql
+discord
+requests
+py3-validate-email
+pymysql
+flask
+flask-limiter
+waitress
