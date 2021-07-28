@@ -29,7 +29,7 @@ class SignupConn(Conn):
         return False
 
     def checkVerificationCode(self, rowID: int):
-        sql = """SELECT verificationCode, verificationExpiry FROM signups WHERE id = %s AND verificationUsed = 0"""
+        sql = """SELECT studentID, verificationCode, verificationExpiry FROM signups WHERE id = %s AND verificationUsed = 0"""
         if not self.dictcurs.execute(sql, (rowID,)):
             return False
         return self.dictcurs.fetchall()[-1]

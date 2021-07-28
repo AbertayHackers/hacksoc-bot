@@ -47,5 +47,9 @@
             "Honourary Member"
         ]
     },
-    "inviteExpireTime":1800
+    "inviteExpireTime":1800,
+    "site":{
+        "host":"127.0.0.1",
+        "port":9000
+    }
 }

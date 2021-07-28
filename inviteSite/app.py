@@ -54,7 +54,8 @@ def registerLogic():
 
     #Generate a verification token
     token = genToken(8)
-    print(token) #Used for debugging
+    #print(token) #Used for debugging
+    SendMail().sendInviteVerification(email, token)
     
     #Ascertain role to be member or fresher
     perm = "fresher" if str(datetime.now().year)[2:] == studentID[:2] else "member"
@@ -101,5 +102,27 @@ def verifyToken():
     return redirect(url_for("verify"))
 
 @app.route("/resend", strict_slashes=False)
+@limiter.limit("3/hour,1/second")
 def resend():
-    return "True"
+    registerID = session.get("registerID")
+
+    if not registerID:
+        flash("No registration attempt found -- please try again")
+        return redirect("/")
+    
+    conn = SignupConn()
+    codeInfo = conn.checkVerificationCode(registerID)
+    if not codeInfo:
+        flash(Markup("""Code not found.<br>
+                    This can happen if the code does not exist, or has already been used.<br>
+                    Please email us on <a href="team@hacksoc.co.uk">team@hacksoc.co.uk</a> if this is not the case."""))
+        return redirect(url_for("verify"))
+    
+    if int(time()) > int(codeInfo["verificationExpiry"]):
+        flash("Verification code expired. Please try again")
+        return redirect("/")
+
+    email = codeInfo["studentID"] + "@uad.ac.uk"
+    SendMail().sendInviteVerification(email, codeInfo["verificationCode"])
+    flash(Markup(f"Email Re-sent to: <code>{email}</code>"))
+    return redirect(url_for("verify"))
