@@ -84,7 +84,7 @@ def verifyToken():
     if not codeInfo:
         flash(Markup("""Code not found.<br>
                     This can happen if the code does not exist, or has already been used.<br>
-                    Please email us on <a href="team@hacksoc.co.uk">team@hacksoc.co.uk</a> if this is not the case."""))
+                    Please email us on <a href="mailto:team@hacksoc.co.uk">team@hacksoc.co.uk</a> if this is not the case."""))
         return redirect(url_for("verify"))
 
     if int(time()) > int(codeInfo["verificationExpiry"]):
