@@ -88,7 +88,7 @@ class SignupConn(Conn):
         self.dbh.commit()
 
     def manualUserInsert(self, discordID: int, role: str) -> bool:
-        sql = """INSERT INTO signups (discordID, perms, genType) VALUES (%s, %s, "MANUAL")"""
+        sql = """INSERT INTO signups (discordID, perms, genType) VALUES (%s, %s, "INSERT")"""
         if not self.curs.execute(sql, (discordID, role)):
             return False
         self.dbh.commit()
