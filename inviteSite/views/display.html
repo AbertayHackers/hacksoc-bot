@@ -7,12 +7,8 @@
     </head>
     <body>
         <main>
-            {% include page %}
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-            <p>{{ messages[0] }}</p>
-                {% endif %}
-            {% endwith %}
+{% include page %}{% with messages = get_flashed_messages() %}{% if messages %}
+            <p>{{ messages[0] }}</p>{% endif %}{% endwith %}
         </main>
     </body>
 </html>
