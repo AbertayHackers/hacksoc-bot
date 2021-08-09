@@ -58,6 +58,9 @@
 			"success":{
                 "userRolesUpdated":"User roles have been updated!",
                 "manualAddSuccess":"User added to database successfully!"
+            },
+            "await":{
+                "addingUser":"User is being added to the database..."
             }
 		}
 	},

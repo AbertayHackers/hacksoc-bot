@@ -178,6 +178,7 @@ class Admin(commands.Cog):
             return
 
         #Checks done -- add the user
+        msg = await ctx.send(getResponse("await", "addingUser"))
         if not conn.manualUserInsert(userID, role):
             await ctx.send(getResponse("error", "manualAddFail"))
             return
@@ -187,7 +188,7 @@ class Admin(commands.Cog):
         for i in config["perms"][role]:
             await user.add_roles(getRole(self.bot, i))
 
-        await ctx.send(getResponse("success", "manualAddSuccess")) 
+        await msg.edit(content=getResponse("success", "manualAddSuccess")) 
         
 
 def setup(bot):
