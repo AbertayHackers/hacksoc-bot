@@ -1,4 +1,4 @@
-import discord, threading, waitress
+import discord, threading, waitress, os
 from discord.ext import commands
 from libs.loadconf import config
 from inviteSite.app import app
@@ -6,8 +6,10 @@ from inviteSite.app import app
 
 class Site(commands.Cog):
     def __init__(self, bot):
-        #thread = threading.Thread(target=lambda: app.run(host=config['site']['host'], port=config['site']['port']))
-        thread = threading.Thread(target=lambda: waitress.serve(app, host=config['site']['host'], port=config['site']['port']))
+        if os.environ.get("DEV"):
+            thread = threading.Thread(target=lambda: app.run(host=config['site']['host'], port=config['site']['port']))
+        else:
+            thread = threading.Thread(target=lambda: waitress.serve(app, host=config['site']['host'], port=config['site']['port']))
         thread.setDaemon(True)
         thread.start()
 

@@ -1,13 +1,15 @@
-import json, discord
+import json, discord, os
+
+envLoc = os.environ.get("DEV")
+if not envLoc or not os.path.exists(envLoc):
+    envLoc = "config/env.json"
 
 # Open all the config files
-with open("config/secrets.json") as secretData, open(
-    "config/config.json"
-) as configData, open("config/contributors.json") as contribData, open(
-    "config/env.json"
-) as envData, open(
-    "config/strings.json"
-) as stringData:
+with open("config/secrets.json") as secretData,\
+        open("config/config.json") as configData,\
+        open("config/contributors.json") as contribData,\
+        open(envLoc) as envData,\
+        open("config/strings.json") as stringData:
     secrets = json.load(secretData)
     config = json.load(configData)
     config["env"] = json.load(envData)
