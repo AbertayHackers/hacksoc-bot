@@ -89,6 +89,7 @@ input {
   padding: 12px 5px;
   border: 1px solid #bbb;
   border-radius: 5px;
+  -webkit-appearance:none;
 }
 
 input[type=text] {
