@@ -1,6 +1,7 @@
-import re, asyncio
+import re, asyncio, os
 from secrets import token_hex as genToken
 from flask import Flask, request, session, render_template, flash, redirect, url_for, Markup
+from werkzeug.exceptions import HTTPException
 from flask_limiter import Limiter
 from validate_email import validate_email as valEmail
 from datetime import timedelta, datetime
@@ -20,6 +21,8 @@ app.config["SESSION_COOKIE_SECURE"] = True
 app.config["SECRET_KEY"] = secrets["flaskSecret"]
 app.wsgi_app = SaferProxyFix(app.wsgi_app)
 limiter.init_app(app)
+
+devModeActive = os.environ.get("DEV")
 
 @app.route("/")
 def registerHome():
@@ -43,7 +46,7 @@ def registerLogic():
         flash("Your student ID has already been used to join the Discord server. Please email us if this is a mistake.")
         return redirect("/")
     elif conn.checkValidInvites(studentID):
-        flash(Markup("You already have an active invite pending verification.<br>Please <a href='/resend'>request a new email</a> if you haven't received a verification email in your university account"))
+        flash(Markup("You already have an active invite pending verification.<br>Please <u><a href='/resend'>request a new email</a></u> if you haven't received a verification email in your university account"))
         return redirect(url_for("verify"))
     
 
@@ -55,7 +58,10 @@ def registerLogic():
     #Generate a verification token
     token = genToken(8)
     #print(token) #Used for debugging
-    SendMail().sendInviteVerification(email, token)
+    if devModeActive:
+        print(f"Mail Sent... probably\nHave a token: {token}")
+    else:    
+        SendMail().sendInviteVerification(email, token)
     
     #Ascertain role to be member or fresher
     perm = "fresher" if str(datetime.now().year)[2:] == studentID[:2] else "member"
@@ -123,6 +129,13 @@ def resend():
         return redirect("/")
 
     email = codeInfo["studentID"] + "@uad.ac.uk"
-    SendMail().sendInviteVerification(email, codeInfo["verificationCode"])
-    flash(Markup(f"Email Re-sent to: <code>{email}</code>"))
+    if devModeActive:
+        print("Mail Sent... probably")
+    else:    
+        SendMail().sendInviteVerification(email, token)
+    flash(Markup(f"Email re-sent to: <code>{email}</code>"))
     return redirect(url_for("verify"))
+
+@app.errorhandler(HTTPException)
+def handleError(e):
+    return render_template("display.html", page="error.html", title=str(e.code), desc=e.name), e.code

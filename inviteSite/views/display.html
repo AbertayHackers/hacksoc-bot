@@ -4,11 +4,22 @@
         <title>HackSoc Discord Invite</title>
         <meta charset="utf-8">
         <meta name=viewport content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+        <link rel="shortcut icon" type="image/png" href="/assets/img/favicon.png">
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     </head>
     <body>
-        <main>
+        <div id="outer">
+            <div id="middle">
+                <div id="inner-back">
+                <div id="inner">
+                    <img id="logo" src="/assets/img/eh.png">
 {% include page %}{% with messages = get_flashed_messages() %}{% if messages %}
-            <p>{{ messages[0] }}</p>{% endif %}{% endwith %}
-        </main>
+                    <p class="centered"><strong>{{ messages[0] }}</strong></p>{% endif %}{% endwith %}
+                </div>
+                </div>
+            </div>
+        </div>
+        <script src="/assets/js/main.js"></script>
     </body>
 </html>

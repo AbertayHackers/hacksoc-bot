@@ -1,7 +1,8 @@
-            <h1>Verify</h1>
-            <p>Please enter your verification code here</p>
-            <form method="POST">
-                <label for="code">Verification Code:</label>
-                <input name="code" type="text" required>
-                <input type="submit" value="Submit">
-            </form>
+                    <h1>Verify</h1>
+                    <p class="centered">You should have received an email to your university email address containing a verification code</p>
+                    <p class="centered">Please enter your verification code here:</p>
+                    <form method="POST">
+                        <input name="code" type="text" required>
+                        <input type="submit" value="Submit">
+                    </form>
+                    <p>If you did not receive a verification code, click <u><a href="{{url_for('resend')}}">here</a></u> to try resending the message</p>

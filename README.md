@@ -16,6 +16,8 @@ When deploying:
 * Run the `main.py` script.
 * Your bot should now be deployed!
 
+## Contribution Thanks
+A big thank you to [@CyberSophi](https://twitter.com/CyberSophi) for the Discord Portal design, and to [@Samiser](https://twitter.com/Sam1ser) for taking the time to implement the design for web.
 
 ## To Do:
 - [ ] Add Multi-language support
