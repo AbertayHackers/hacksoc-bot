@@ -4,5 +4,18 @@ MIME-Version: 1.0
 Content-Type: text/html
 Subject: Hacksoc Discord Verification Code
 
-<h1>Welcome to the Abertay Hacking Society Discord!</h1>
-<p>Please use this code to verify your email address: <code>{}</code></p>
+<table style="width: 100%; border:0; color: #FFFFFF; background-color: #000000; cellspacing=0; cellpadding=0">
+    <tr>
+        <td align="center" style="padding: 10%">
+            <a href="https://hacksoc.co.uk"><img src="https://discord.hacksoc.co.uk/assets/img/eh.png" style="width:100px"></a>
+            <h1 style="font-size: 3rem">Abertay Hackers</h1>
+            <p style="font-size: 1rem"><b>Please use this code to verify yourself in the <a href="https://discord.hacksoc.co.uk/verify" style="color: white; text-decoration: none">Discord Signup Portal</a>:</b></p>
+            <code style="font-size:1.5rem">{}</code>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" style="font-size:12px; padding: 0 10% 10px 10%;">
+            <p>If you did not request this email, please feel free to ignore it, or forward it to <u><a href="mailto:emailabuse@hacksoc.co.uk" style="text-decoration:none; color: white"><code>emailabuse@hacksoc.co.uk</code></a></u>.</p>
+        </td>
+    </tr>
+</table>
