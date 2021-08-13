@@ -16,6 +16,10 @@
 				"desc":"List the contributors to the bot",
 				"usage":"{}contributors"
 			},
+            "github":{
+                "desc":"Display the bot's Github link",
+                "usage":"{}github"
+            },
 			"rules":{
 				"desc":"Display the server rules",
 				"usage":"{}rules [NUMBER]"
@@ -66,6 +70,8 @@
 	},
 	"links":{
 		"constitution":"https://wiki.hacksoc.co.uk/information/constitution",
-		"site":"https://hacksoc.co.uk"
+		"site":"https://hacksoc.co.uk",
+        "discordPortal":"https://discord.hacksoc.co.uk",
+        "botGithub":"https://github.com/AbertayHackers/hacksoc-bot"
 	}
 }
