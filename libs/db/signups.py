@@ -93,3 +93,40 @@ class SignupConn(Conn):
             return False
         self.dbh.commit()
         return True
+
+    def storePerma(self, code: str, perms: str) -> bool:
+        sql = """INSERT INTO permaInvites (inviteCode, perms) VALUES (%s, %s)"""
+        if not self.curs.execute(sql, (code,perms)):
+            return False
+        self.dbh.commit()
+        return True
+
+    def delPerma(self, code: str) -> bool:
+        sql = """DELETE FROM permaInvites WHERE inviteCode = %s"""
+        self.curs.execute(sql, (code,))
+        if self.curs.rowcount < 1:
+            return False
+        self.dbh.commit()
+        return True
+        
+    def getPermaInvites(self, withPerms=False) -> list:
+        sql = f"""SELECT inviteCode{", perms" if withPerms else ""} FROM permaInvites"""
+        self.curs.execute(sql)
+        if self.curs.rowcount == 0:
+            return []
+        res = []
+        for i in self.curs.fetchall():
+            if withPerms:
+                res.append(list(i))
+            else:
+                res.append(i[0])
+        return res
+
+    def getPermaInviteRole(self, code: str) -> str:
+        sql = """SELECT perms FROM permaInvites WHERE inviteCode = %s"""
+        if not self.curs.execute(sql, (code,)):
+            return False
+        elif self.curs.rowcount != 1:
+            return False
+
+        return self.curs.fetchone()[0]

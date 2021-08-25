@@ -11,10 +11,16 @@ class Invites(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
+        conn = SignupConn()
+        permaInvites = conn.getPermaInvites()
         for invite in await getGuild(self.bot).invites():
             if invite.uses > 0:
                 code = invite.code
-                conn = SignupConn()
+                if code in permaInvites:
+                    role = conn.getPermaInviteRole(code)
+                    for i in config["perms"][role]:
+                        await member.add_roles(getRole(self.bot, i))
+                    return
 
                 conn.setUsed(code)
                 conn.setDiscordID(member.id, code)

@@ -1,4 +1,4 @@
-import discord, re
+import discord, re, qrcode
 from discord.ext import commands
 from libs.loadconf import (
     config,
@@ -13,6 +13,7 @@ from libs.loadconf import (
 )
 from libs.db import SignupConn
 from libs.colours import Colours
+from io import BytesIO
 
 cleanID = lambda x: re.sub("[^0-9]", "", x)
 
@@ -117,6 +118,82 @@ class Admin(commands.Cog):
         invite = await channel.create_invite(max_age=0)
         await ctx.send(invite)
         conn.manualInvite(invite.code, target)
+
+
+    @commands.command(name="perma", description=formatHelp("perma", "desc"), usage=formatHelp("perma", "usage"))
+    async def perma(self, ctx, target=None):
+        channel = self.bot.get_channel(getEnv("channel", "welcome"))
+        roles, roleList = getAvailableRoles()
+        #Validate input
+        if target not in roles:
+            await ctx.send(getResponse("error", "invalidInviteRole").format(target=target, roleList=roleList))
+            return
+
+        conn = SignupConn()
+        invite = await channel.create_invite(max_age=0, max_uses=0)
+        conn.storePerma(invite.code, target)
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=2
+        )
+        qr.add_data(invite)
+        qr.make(fit=True)
+        img = qr.make_image(fill_color="black", back_color="white")
+
+        with BytesIO() as imgBin:
+            img.save(imgBin, "PNG")
+            imgBin.seek(0)
+            await ctx.send(invite)
+            await ctx.send(file=discord.File(fp=imgBin, filename="image.png"))
+
+    @commands.command(name="delPerma", description=formatHelp("delPerma", "desc"), usage=formatHelp("delPerma", "usage"))
+    async def delPerma(self, ctx, code=None):
+        conn = SignupConn()
+        code = str(code)
+        if not conn.delPerma(str(code)):
+            await ctx.send(f"No invites found with the code: `{code}`")
+        else:
+            for i in await ctx.guild.invites():
+                if i.code == code:
+                    await i.delete()
+            await ctx.send(f"Invite deleted")
+
+    @commands.command(name="listPermaInvites", description=formatHelp("listPermaInvites", "desc"), usage=formatHelp("listPermaInvites", "usage"))
+    async def listPermaInvites(self, ctx):
+        conn = SignupConn()
+        invites = conn.getPermaInvites(withPerms=True)
+        if len(invites) == 0:
+            await ctx.send("No perma invites")
+            return
+        embed = discord.Embed(title="List of Perma Invites:")
+        for i in invites:
+            embed.add_field(name="​", value=f"""**Code:** `{i[0]}`\n**Type:** {i[1].capitalize()}""", inline=False)
+
+        await ctx.send(embed=embed)
+
+    @commands.command(name="getInviteQR", description=formatHelp("getInviteQR", "desc"), usage=formatHelp("getInviteQR", "usage"))
+    async def getInviteQR(self, ctx, code=None):
+        if not code:
+            await ctx.send("No code provided")
+            return
+        
+            
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=2
+        )
+        qr.add_data(f"https://discord.gg/{code}")
+        qr.make(fit=True)
+        img = qr.make_image(fill_color="black", back_color="white")
+
+        with BytesIO() as imgBin:
+            img.save(imgBin, "PNG")
+            imgBin.seek(0)
+            await ctx.send(file=discord.File(fp=imgBin, filename="image.png"))
 
     @commands.command(name="updateuser", description=formatHelp("updateuser", "desc"), usage=formatHelp("updateuser", "usage"))
     async def updateuser(self, ctx, target="", role=None):

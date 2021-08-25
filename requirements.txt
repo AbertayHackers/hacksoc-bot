@@ -5,3 +5,5 @@ pymysql
 flask
 flask-limiter
 waitress
+qrcode
+pillow

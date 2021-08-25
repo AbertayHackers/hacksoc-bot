@@ -32,6 +32,22 @@
                 "desc":"Generate an invite code manually",
                 "usage":"{}invite staff|sa|member|grad|fresher"
             },
+            "perma":{
+                "desc":"Generate a permanent invite code manually",
+                "usage":"{}perma staff|sa|member|grad|fresher"
+            },
+            "delPerma":{
+                "desc": "Delete a permanent invite code",
+                "usage":"{}delperma code"
+            },
+            "listPermaInvites":{
+                "desc": "List all permanent invites",
+                "usage":"{}listPermaInvites"
+            },
+            "getInviteQR":{
+                "desc": "Generate a QR code for any invite code",
+                "usage":"{}getInviteCode code"
+            },
             "updateuser":{
                 "desc":"Swap the roles for a user",
                 "usage":"{}updateuser user staff|sa|member|grad|fresher"
