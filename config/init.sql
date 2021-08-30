@@ -5,7 +5,7 @@ CREATE TABLE discord.signups (
     discordID VARCHAR(25),
     studentID VARCHAR(10),
     perms VARCHAR(20),
-    inviteCode VARCHAR(20) UNIQUE,
+    inviteCode VARCHAR(20),
     joinTime DATETIME,
     verificationCode VARCHAR(35) UNIQUE,
     verificationExpiry INT,

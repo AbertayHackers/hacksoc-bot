@@ -18,6 +18,7 @@ class SignupConn(Conn):
         self.dbh.commit()
         return self.curs.lastrowid
 
+
     def checkValidInvites(self, studentID: str):
         sql = """SELECT verificationExpiry FROM signups WHERE inviteUsed = 0 AND studentID = %s"""
         if not self.curs.execute(sql, (studentID,)):
@@ -43,6 +44,13 @@ class SignupConn(Conn):
     def insertInvite(self, registerID: int, code: str) -> bool:
         sql = """UPDATE signups SET inviteCode = %s WHERE id = %s"""
         if not self.curs.execute(sql, (code, registerID)):
+            return False
+        self.dbh.commit()
+        return True
+
+    def insertPermaJoin(self, discordID, perms, inviteCode):
+        sql = """INSERT INTO signups (discordID, perms, inviteCode, joinTime, genType, inviteUsed) VALUES (%s, %s, %s, NOW(), "PERMA", 1)"""
+        if not self.curs.execute(sql, (discordID, perms, inviteCode)):
             return False
         self.dbh.commit()
         return True

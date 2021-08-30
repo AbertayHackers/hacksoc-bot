@@ -18,6 +18,7 @@ class Invites(commands.Cog):
                 code = invite.code
                 if code in permaInvites:
                     role = conn.getPermaInviteRole(code)
+                    conn.insertPermaJoin(member.id, role, code)
                     for i in config["perms"][role]:
                         await member.add_roles(getRole(self.bot, i))
                     return
