@@ -129,9 +129,9 @@ def resend():
 
     email = codeInfo["studentID"] + "@uad.ac.uk"
     if devModeActive:
-        print("Mail Sent... probably")
+        print(f"Mail Sent... probably... \nEmail: {email}\nToken: {codeInfo['verificationCode']}")
     else:    
-        SendMail().sendInviteVerification(email, token)
+        SendMail().sendInviteVerification(email, codeInfo["verificationCode"])
     flash(Markup(f"Email re-sent to: <code>{email}</code>"))
     return redirect(url_for("verify"))
 
