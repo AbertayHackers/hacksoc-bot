@@ -55,6 +55,7 @@ class SignupConn(Conn):
         self.dbh.commit()
         return True
 
+
     def setUsed(self, code: str) -> bool:
         sql = """UPDATE signups SET inviteUsed = 1 WHERE inviteCode = %s"""
         if not self.curs.execute(sql, (code,)):
@@ -138,3 +139,17 @@ class SignupConn(Conn):
             return False
 
         return self.curs.fetchone()[0]
+
+    def getPermaUses(self, code: str):
+        sql = """SELECT uses FROM permaInvites WHERE inviteCode = %s"""
+        if not self.curs.execute(sql, (code,)) or self.curs.rowcount != 1:
+            return False
+        return self.curs.fetchone()[0]
+
+    def incrementPermaUses(self, code: str) -> bool:
+        sql = """UPDATE permaInvites SET uses = uses + 1 WHERE inviteCode = %s"""
+        if not self.curs.execute(sql, (code,)):
+            return False
+        elif self.curs.rowcount != 1:
+            return False
+        return True
