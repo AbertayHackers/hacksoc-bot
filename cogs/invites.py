@@ -1,4 +1,4 @@
-import discord
+import discord, os
 from discord.ext import commands
 from libs.loadconf import config, getGuild, getRole
 from libs.db import SignupConn
