@@ -7,7 +7,8 @@
 		"admin",
 		"misc",
         "invites",
-        "site"
+        "site",
+        "roles"
 	],
 	"disabledCogs":[],
 	"commands":[
@@ -47,6 +48,9 @@
             "Honourary Member"
         ]
     },
+    "selfAssignables":[
+        "CTF"
+    ],
     "inviteExpireTime":1800,
     "site":{
         "host":"127.0.0.1",

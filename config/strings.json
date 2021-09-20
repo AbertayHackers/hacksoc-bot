@@ -59,7 +59,11 @@
 			"version":{
 				"desc":"Display the bot version",
 				"usage":"{}version"
-			}
+			},
+            "role":{
+                "desc":"Assign yourself a role!\nCurrently only the ctf role is available",
+                "usage":"{}role CTF"
+            }
 		},
 		"responses":{
 			"error":{
@@ -69,7 +73,10 @@
 				"notAnInt":"Argument not an integer",
                 "invalidUser":"The user requested does not exist or is not a member of the server",
                 "invalidArgument":"Invalid arguments provided. This command expects {}",
+                "invalidArgumentOptions":"Invalid arguments provided. Please provide one of the following options:\n```{}```",
                 "invalidInviteRole":"`{target}` is not a valid role. Pick between: {roleList}",
+                "roleAssignNotAllowed":"`{}` is not on the list of assignable roles. Pick between:```{}```",
+                "roleOpFailed":"Role operation failed. Speak to the secretary",
                 "newRoleSameAsCurrent":"The role you are trying to apply is the same as the user's current role",
                 "memberPredatesRoleManagement":"This member joined the server before role management was added. Please update their roles manually or use `{}adduser {} {}`.",
                 "userAlreadyInDB":"The requested user is already in the database. Try `{}updateuser` instead",
@@ -77,7 +84,9 @@
 			},
 			"success":{
                 "userRolesUpdated":"User roles have been updated!",
-                "manualAddSuccess":"User added to database successfully!"
+                "manualAddSuccess":"User added to database successfully!",
+                "roleAdded":"Added the role!",
+                "roleRemoved":"Removed the role!"
             },
             "await":{
                 "addingUser":"User is being added to the database..."
