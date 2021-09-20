@@ -1,7 +1,7 @@
 {
 	"prefix":"!",
 	"status":"Hack the planet!",
-	"version":"v1.5",
+	"version":"v1.6",
 	"cogs":[
 		"contributors",
 		"admin",
