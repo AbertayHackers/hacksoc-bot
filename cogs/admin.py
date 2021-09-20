@@ -216,7 +216,7 @@ class Admin(commands.Cog):
         conn = SignupConn()
         currentRole = conn.checkRoleFromID(target)
         if not currentRole:
-            await ctx.send(getResponse("error", "memberPredatesRoleManagement"))
+            await ctx.send(getResponse("error", "memberPredatesRoleManagement").format(config["prefix"], user.id, role))
             return
         elif currentRole == role:
             await ctx.send(getResponse("error", "newRoleSameAsCurrent"))
