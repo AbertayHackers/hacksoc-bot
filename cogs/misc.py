@@ -3,6 +3,7 @@ from discord.ext import commands
 from libs.loadconf import config, formatHelp
 
 
+
 class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -14,6 +15,8 @@ class Misc(commands.Cog):
     )
     async def contributors(self, ctx):
         await ctx.channel.send(config["version"])
+
+    
 
 
 def setup(bot):

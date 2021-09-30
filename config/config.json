@@ -8,7 +8,8 @@
 		"misc",
         "invites",
         "site",
-        "roles"
+        "roles",
+        "crypto"
 	],
 	"disabledCogs":[],
 	"commands":[
@@ -55,5 +56,6 @@
     "site":{
         "host":"127.0.0.1",
         "port":9000
-    }
+    },
+    "cryptoCooldown":180
 }
