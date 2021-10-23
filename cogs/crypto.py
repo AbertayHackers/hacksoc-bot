@@ -12,7 +12,7 @@ class Crypto(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if not msg.author.bot and time() - self.cryptoLastRun > config["cryptoCooldown"] and re.search("crypto(?!( +)?graphy)", msg.content, re.IGNORECASE):
+        if not msg.author.bot and time() - self.cryptoLastRun > config["cryptoCooldown"] and re.search("crypto(?!( +)?(?:graphy|currency))", msg.content, re.IGNORECASE):
             self.cryptoLastRun = time()
             await msg.reply("Crypto means cryptography!")
 
