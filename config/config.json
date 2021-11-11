@@ -47,6 +47,9 @@
             "Verified",
             "Grad",
             "Honourary Member"
+        ],
+        "guest":[
+            "Guest"
         ]
     },
     "selfAssignables":[
