@@ -53,6 +53,8 @@ async def on_command_error(ctx, error):
     raise error
 
 
+
+
 try:
     bot.run(secrets["token"])
 except RuntimeError:

@@ -15,7 +15,7 @@ class Invites(commands.Cog):
         conn = SignupConn()
         permaInvites = conn.getPermaInvites()
         for invite in await getGuild(self.bot).invites():
-            if invite.uses > 0:
+            if invite.inviter.id == self.bot.user.id and invite.uses > 0:
                 code = invite.code
                 if code in permaInvites:
                     if invite.uses != conn.getPermaUses(code) + 1:

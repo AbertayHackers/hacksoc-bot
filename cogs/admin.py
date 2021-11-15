@@ -34,7 +34,7 @@ class Admin(commands.Cog):
         name="rules",
         description=formatHelp("rules", "desc"),
         usage=formatHelp("rules", "usage"),
-        aliases=["rule"],
+        aliases=["rule"]
     )
     async def rules(self, ctx, ruleNum=None):
         rules = LoadRules()
