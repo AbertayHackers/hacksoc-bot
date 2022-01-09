@@ -11,7 +11,7 @@ class BannedWords(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if re.match(".*quidd?itch.*", message.content, re.IGNORECASE | re.DOTALL):
+        if re.match(".*quidd?it?ch.*", message.content, re.IGNORECASE | re.DOTALL):
             await message.delete()
 
 def setup(bot):
