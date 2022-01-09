@@ -9,7 +9,8 @@
         "invites",
         "site",
         "roles",
-        "crypto"
+        "crypto",
+        "bannedwords"
 	],
 	"disabledCogs":[],
 	"commands":[
