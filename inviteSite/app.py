@@ -61,7 +61,12 @@ def registerLogic():
     if devModeActive:
         print(f"Mail Sent... probably\nHave a token: {token}")
     else:    
-        SendMail().sendInviteVerification(email, token)
+        try:
+            with SendMail() as s:
+                s.sendInviteVerification(email, token)
+        except:
+            flash("Failed to send email. Please reach out to team@hacksoc.co.uk")
+            return redirect("/")
     
     #Ascertain role to be member or fresher
     perm = "fresher" if str(datetime.now().year)[2:] == studentID[:2] else "member"

@@ -1,4 +1,4 @@
-import discord, os
+import discord, os, sys
 from discord.ext import commands
 from libs.loadconf import config, getGuild, getRole
 from libs.db import SignupConn
@@ -33,7 +33,11 @@ class Invites(commands.Cog):
                 if not role:
                     Colours.warn("Invalid Invite used")
                     if not os.environ.get("DEV"):
-                        SendMail().sendWarning(f"Invalid Invite Used by {member}.\nCode was {invite.code}")
+                        s = SendMail()
+                        if s == None:
+                            print("Error, could not open email handle", file=sys.stderr)
+                        else:
+                            s.sendWarning(f"Invalid Invite Used by {member}.\nCode was {invite.code}")
                     return
                 for i in config["perms"][role]:
                     await member.add_roles(getRole(self.bot, i))
