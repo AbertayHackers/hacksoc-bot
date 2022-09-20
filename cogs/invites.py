@@ -33,11 +33,11 @@ class Invites(commands.Cog):
                 if not role:
                     Colours.warn("Invalid Invite used")
                     if not os.environ.get("DEV"):
-                        s = SendMail()
-                        if s == None:
+                        try:
+                            with SendMail() as s:
+                                s.sendWarning(f"Invalid Invite Used by {member}.\nCode was {invite.code}")
+                        except:
                             print("Error, could not open email handle", file=sys.stderr)
-                        else:
-                            s.sendWarning(f"Invalid Invite Used by {member}.\nCode was {invite.code}")
                     return
                 for i in config["perms"][role]:
                     await member.add_roles(getRole(self.bot, i))

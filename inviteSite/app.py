@@ -136,7 +136,12 @@ def resend():
     if devModeActive:
         print(f"Mail Sent... probably... \nEmail: {email}\nToken: {codeInfo['verificationCode']}")
     else:    
-        SendMail().sendInviteVerification(email, codeInfo["verificationCode"])
+        try:
+            with SendMail() as s:
+                s.sendInviteVerification(email, token)
+        except:
+            flash("Failed to re-send email. Please reach out to team@hacksoc.co.uk")
+            return redirect(url_for("verify"))
     flash(Markup(f"Email re-sent to: <code>{email}</code>"))
     return redirect(url_for("verify"))
 
