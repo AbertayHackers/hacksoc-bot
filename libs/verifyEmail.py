@@ -21,3 +21,19 @@ def verifaliaAPI(email):
             }
         ]
     }
+    response = requests.post(
+       verifyURI, auth = authentication, headers = headers, data = json.dumps(data))
+    if response.status_code == 200:
+        # will contain the verification result
+        entryData = response.json()["entries"]["data"][0]
+        print(response.status_code)
+        if entryData["status"] != 'success' and entryData["classification"] != 'Deliverable':
+            print("Invalid Student ID")
+            print(entryData["status"])
+            print(entryData["classification"])
+        else:
+            print("Valid Student ID")
+            print(entryData["status"])
+            print(entryData["classification"])
+    else:
+        print(response)  # print(response.json)
