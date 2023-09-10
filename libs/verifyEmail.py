@@ -1,5 +1,9 @@
 #! /usr/bin/env python3
-from libs.loadconf import secrets
+from loadconf import secrets
+import json
+import requests
+from requests.auth import HTTPBasicAuth
+from time import sleep
 
 
 def verifaliaAPI(email):
