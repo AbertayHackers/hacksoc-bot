@@ -6,7 +6,26 @@ from requests.auth import HTTPBasicAuth
 from time import sleep
 
 
-def verifaliaAPI(email):
+def valEmail(email, emptyWallet=""):
+    accounts = ['One',
+                'Two',
+                'Three',
+                'Four']
+    credsURI = 'https://api.verifalia.com/v2.4/credits/balance'
+    # check which account has an empty wallet (happens if it returns a 402)
+    if emptyWallet:
+        accounts.remove(emptyWallet)
+    # loop each and check each accounts balances
+    for accountNum in accounts:
+        authentication = HTTPBasicAuth(
+            secrets[f'verifalia{accountNum}ID'], secrets[f'verifalia{accountNum}Key'])
+        response = requests.get(credsURI, auth=authentication)
+        if response.json()["freeCredits"] >= 1:
+            # either true or false
+            return verifaliaAPI(email, accountNum)
+
+
+def verifaliaAPI(email, accountNum):
     # the base url is https://api.verifalia.com/v2.4 as it removes the need
     # for implementing an auto retry system
 
@@ -46,10 +65,12 @@ def verifaliaAPI(email):
                 print("Invalid Student ID")
                 print(entryData["status"])
                 print(entryData["classification"])
+                return False
             else:
                 print("Valid Student ID")
                 print(entryData["status"])
                 print(entryData["classification"])
+                return True
 
     elif response.status_code == 200:
         # will contain the verification result
@@ -59,9 +80,11 @@ def verifaliaAPI(email):
             print("Invalid Student ID")
             print(entryData["status"])
             print(entryData["classification"])
+            return False
         else:
             print("Valid Student ID")
             print(entryData["status"])
             print(entryData["classification"])
+            return True
     else:
-        print(response)  # print(response.json)
+        return False
