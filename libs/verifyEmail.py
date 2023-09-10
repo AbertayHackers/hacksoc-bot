@@ -46,7 +46,10 @@ def verifaliaAPI(email, accountNum):
     }
     response = requests.post(
         verifyURI, auth=authentication, headers=headers, data=json.dumps(data))
-    if response.status_code == 202:
+    if response.status_code == 402:
+        # responds with 402 if payment is required (when free credits run out)
+        return valEmail(email, emptyWallet=accountNum)
+    elif response.status_code == 202:
         # responds with 202 if request was queued (shouldn't happen often)
         jobID = response.json()["overview"]["id"]
         jobURI = f'https://api.verifalia.com/v2.4/email-validations/{jobID}'
