@@ -35,7 +35,7 @@ def verifaliaAPI(email, accountNum):
     # this rate limit is not likely to be hit by us
     verifyURI = 'https://api.verifalia.com/v2.4/email-validations?waitTime=5000'
     authentication = HTTPBasicAuth(
-        secrets['verifaliaOneID'], secrets['verifaliaOneKey'])
+        secrets[f'verifalia{accountNum}ID'], secrets[f'verifalia{accountNum}Key'])
     headers = {'Content-Type': 'application/json'}
     data = {
         "entries": [
