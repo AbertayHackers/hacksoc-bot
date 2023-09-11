@@ -3,7 +3,6 @@ from secrets import token_hex as genToken
 from flask import Flask, request, session, render_template, flash, redirect, url_for, Markup
 from werkzeug.exceptions import HTTPException
 from flask_limiter import Limiter
-from validate_email import validate_email as valEmail
 from datetime import timedelta, datetime
 from time import time
 from libs.loadconf import secrets
@@ -11,6 +10,7 @@ from libs.genInvite import genInvite
 from libs.saferproxyfix import SaferProxyFix
 from libs.db import SignupConn
 from libs.sendMail import SendMail
+from libs.verifyEmail import valEmail
 
 
 limiter = Limiter(key_func=lambda:request.headers.get("X-Forwarded-For"))
@@ -51,7 +51,7 @@ def registerLogic():
     
 
     email = studentID + "@uad.ac.uk"
-    if not valEmail(email_address=email):
+    if not valEmail(email=email):
         flash("Invalid Student ID or your email address hasn't been set up yet. If this is an error, please email us on the address above.")
         return redirect("/"), 302        
 
