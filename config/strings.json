@@ -62,7 +62,7 @@
 			},
             "role":{
                 "desc":"Assign yourself a role!\nCurrently only the ctf role is available",
-                "usage":"{}role CTF"
+                "usage":"{}role CTF|Hacksoc Helper"
             }
 		},
 		"responses":{

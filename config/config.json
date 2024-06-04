@@ -54,7 +54,8 @@
         ]
     },
     "selfAssignables":[
-        "CTF"
+        "CTF",
+	"Hacksoc Helper"
     ],
     "inviteExpireTime":1800,
     "site":{
